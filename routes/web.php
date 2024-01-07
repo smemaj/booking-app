@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -29,6 +30,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/home', [BookingController::class, 'main'])->name('home');
+    Route::get('/home/bookings', [BookingController::class, 'bookings'])->name('bookings');
+
+    Route::get('/home/flights', [FlightController::class, 'flights'])->name('flights');
 
     Route::get('/home/users', [UserController::class, 'listUsers'])->name('listUsers');
     Route::get('/home/admin', [UserController::class, 'checkAdmin'])->name('checkAdmin');

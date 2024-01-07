@@ -103,6 +103,11 @@
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
 
                             </div>
+                            <div>
+                                <p class="mb-0">Back to login page <a href="{{ route('loginView') }}"
+                                        class="text-white-50 fw-bold">here</a>.
+                                </p>
+                            </div>
                         </div>
                         </form>
                     </div>

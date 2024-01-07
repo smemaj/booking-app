@@ -32,10 +32,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav nav-tabs mr-auto" id="myNavBar">
-                        <li class="nav-item active">
+                        <li class="nav-item" role="presentation">
                             <a class="nav-link" href="{{ route('bookings') }}">Bookings</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="{{ route('flights') }}">Flights</a>
                         </li>
                         <li class="nav-item">
