@@ -40,7 +40,7 @@ class AuthController extends Controller
 
   
         $userLogin = new UserLogin([
-            'user_id' => $user->id,
+            'id' => $user->id,
             'username' => $request->fname.'_'.$request->lname,
             'password' => Hash::make($request->password),
         ]);
@@ -61,8 +61,9 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $request['email'])->first();
+       
         $userlogin = $user->userLogin()->first();
-
+       
         if(Hash::check($request['password'], $userlogin->password)){
             Auth::login($user);
             return redirect()->route('home');
