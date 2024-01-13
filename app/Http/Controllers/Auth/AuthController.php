@@ -61,7 +61,8 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $request['email'])->first();
-       
+        if($user==null)
+        return redirect()->route('loginView')->withErrors('user does not exist');
         $userlogin = $user->userLogin()->first();
        
         if(Hash::check($request['password'], $userlogin->password)){

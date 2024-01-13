@@ -12,4 +12,15 @@ class BookingController extends Controller
         return view('home');
     }
 
+    public function show()
+    {
+        return view('tabs.bookings_tab');
+    }
+
+    public function book()
+    {
+        //
+        return view('tabs.bookings_tab');
+    }
+
 }

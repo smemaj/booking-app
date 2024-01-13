@@ -52,35 +52,42 @@
                     </form>
                 </div>
             </nav>
-            @foreach ($flights as $flight)
-                <div class="container py-5 bg-light">
-                    <div class="row">
-                        <div class="col-sm col-lg-4">
-                            <div class="card text-dark card-has-bg click-col"
-                                style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
-                                <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                                    alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div class="card-body">
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="media">
-                                            <img class="mr-3 rounded-circle"
-                                                src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                                                alt="Generic placeholder image" style="max-width:50px">
-                                            <div class="media-body">
-                                                <h6 class="my-0 text-light d-block">{{ $flight->origin}}</h6>
-                                                <a href="{{route('edit', $flight)}}">{{ $flight->destination }}</a>
-                                                <small class="text-light">Traveller</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <form method="POST" action="#">
+                <div class="mb-3">
+                    <label for="origin" class="form-label">Origin</label>
+                    <h3 class="text-dark">{{ $flight->origin }}</h3>
                 </div>
-            @endforeach
+                <div class="mb-3">
+                    <label for="destination" class="form-label">Destination</label>
+                    <h3 class="text-dark">{{ $flight->destination }}</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="flight_date" class="form-label">Flight Date</label>
+                    <h3 class="text-dark">{{ $flight->flight_date }}</h3>
+                </div> 
+                <div class="mb-3">
+                    <label for="departure_time" class="form-label">Departure Time</label>
+                    <h3 class="text-dark">{{ $flight->departure_time }}</h3>
+                </div> 
+
+                <div class="mb-3">
+                    <label for="airline_code" class="form-label">Airline Code</label>
+                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->airline_code }}</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="flight_number" class="form-label">Flight Number</label>
+                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->flight_number }}</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="aircraft_type" class="form-label">Aircraft</label>
+                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->aircraft_type }}</h3>
+                </div> 
+                <div class="mb-3">
+                    <label for="flight_status" class="form-label">Status</label>
+                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->flight_status }}</h3>
+                </div> 
+                <button class="btn btn-primary" name="action" value="book">Book</button>
+            </form>
         </div>
     </div>
 </body>

@@ -30,10 +30,11 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/home', [BookingController::class, 'main'])->name('home');
-    Route::get('/home/bookings', [BookingController::class, 'bookings'])->name('bookings');
+    Route::get('/home/bookings', [BookingController::class, 'show'])->name('bookings');
 
-    Route::get('/home/flights', [FlightController::class, 'flights'])->name('flights');
+    Route::get('/home/flights', [FlightController::class, 'show'])->name('flights');
+    Route::get('/home/flights/edit/{flight}', [FlightController::class, 'edit'])->name('edit');
 
-    Route::get('/home/users', [UserController::class, 'listUsers'])->name('listUsers');
+    Route::get('/home/users', [UserController::class, 'show'])->name('users');
     Route::get('/home/admin', [UserController::class, 'checkAdmin'])->name('checkAdmin');
 });

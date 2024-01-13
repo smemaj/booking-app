@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
@@ -44,13 +44,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function userLogin(): HasOne
+    public function userLogin()
     {
         return $this->hasOne(UserLogin::class);
     }
 
-    public function userRole(): HasOne
+    public function userRole()
     {
         return $this->hasOne(UserRole::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function checkAdmin()
+    {
+        DB::select("call check_admin(".$this->id.", @checking)");
+        $check =  DB::select("select @checking as checking");
+        $admin = $check[0]->checking;
+        return $admin;
     }
 }

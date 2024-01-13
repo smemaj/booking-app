@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserController extends Controller
 {
+
+   
+    public function show()
+    {
+        $users = User::all();
+        return view('admin.users_tab', [ 'users' => $users ]);
+    }
+
 
     public function listUsers()
     {

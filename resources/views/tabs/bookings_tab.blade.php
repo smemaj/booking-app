@@ -32,8 +32,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav nav-tabs mr-auto" id="myNavBar">
-                        <li class="nav-item active" role="presentation">
-                            <a class="nav-link" href="{{ route('bookings') }}">Bookings</a>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('users') }}">Users</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ route('bookings') }}">Bookings</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('flights') }}">Flights</a>
@@ -41,7 +44,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                         </li>
-                        
                     </ul>
                     <form class="form-inline my-2 my-lg-0 justify-right">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

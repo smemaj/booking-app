@@ -21,13 +21,6 @@
             @endforeach
         </ul>
     </div><br />
-    <div>
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-        @endif                        
-    </div>
     @endif
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
