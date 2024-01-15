@@ -30,11 +30,18 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/home', [BookingController::class, 'main'])->name('home');
-    Route::get('/home/bookings', [BookingController::class, 'show'])->name('bookings');
+    //admin
+    Route::get('/home/bookings', [BookingController::class, 'showAllBookings'])->name('showAllBookings');
+    //user
+    Route::get('/home/bookings/user', [BookingController::class, 'showForUser'])->name('showForUser');
+    Route::post('/home/bookings/{flight}', [BookingController::class, 'book'])->name('bookFlight');
 
-    Route::get('/home/flights', [FlightController::class, 'show'])->name('flights');
+    //admin
+    Route::get('/home/flights', [FlightController::class, 'showAllFlights'])->name('showAllFlights');
     Route::get('/home/flights/edit/{flight}', [FlightController::class, 'edit'])->name('edit');
+    Route::get('/home/flights/search', [FlightController::class, 'searchFlights'])->name('searchFlights');
+    Route::get('/home/flights/user', [FlightController::class, 'showAll'])->name('showAll');
 
-    Route::get('/home/users', [UserController::class, 'show'])->name('users');
+    Route::get('/home/users', [UserController::class, 'showAllUsers'])->name('showAllUsers');
     Route::get('/home/admin', [UserController::class, 'checkAdmin'])->name('checkAdmin');
 });
