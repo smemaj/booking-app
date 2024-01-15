@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('app.css') }}" rel="stylesheet">
-   
+
 </head>
 
 <body>
@@ -32,14 +33,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav nav-tabs mr-auto" id="myNavBar">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('showForUser') }}">Bookings</a>
+                        </li>
                         <li class="nav-item active">
-                            <a class="nav-link active" href="{{ route('showAllUsers') }}">Users</a>
+                            <a class="nav-link active" href="{{ route('searchFlights') }}">Search Flights</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('showAllBookings') }}">Bookings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('showAllFlights') }}">Flights</a>
+                            <a class="nav-link" href="{{ route('showAll') }}">Flights</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
@@ -51,9 +52,30 @@
                     </form>
                 </div>
             </nav>
+
+            <div class="container py-5 bg-light">
+                <div class="row">
+                    <div class="col-sm mb-3">
+                        <label for="origin" class="form-label">Origin</label>
+                        <input type="text" class="form-control" name="origin" id="origin">
+                    </div>
+                    <div class="col-sm mb-3">
+                        <label for="destination" class="form-label">Destination</label>
+                        <input type="text" class="form-control" name="destination" id="destination">
+                    </div>
+                    <div class="col-sm mb-3">
+                        <div class="row">
+                            <div class="col-auto">
+                                <label for="date" class="form-label">Flight Date</label>
+                                <input type="date" class="form-control" name="date" id="date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="container py-2 bg-light">
                     <div class="row">
-                        @foreach ($users as $user)
+                        @foreach ($flights as $flight)
                         <div class="col-sm col-lg-4 pt-5">
                             <div class="card text-dark card-has-bg click-col"
                                 style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
@@ -68,22 +90,24 @@
                                                 src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
                                                 alt="Generic placeholder image" style="max-width:50px">
                                             <div class="media-body">
-                                                <h6 class="my-0 text-light d-block">{{ $user->first_name.' '.$user->last_name }}</h6>
+                                                <h6 class="my-0 text-light d-block">{{ $flight->origin}}</h6>
+                                                <a href="{{route('edit', $flight)}}">{{ $flight->destination }}</a>
                                                 <small class="text-light">Traveller</small>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
+                        
             @endforeach
                     </div>
                 </div>
+
+
+            </div>
         </div>
     </div>
 </body>
 
 </html>
-
-
-

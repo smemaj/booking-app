@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('bookings') }}">Bookings</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link active" href="{{ route('flights') }}">Flights</a>
+                            <a class="nav-link active" href="{{ route('showAll') }}">Flights</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
@@ -52,7 +52,8 @@
                     </form>
                 </div>
             </nav>
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('bookFlight', $flight) }}">
+                @csrf
                 <div class="mb-3">
                     <label for="origin" class="form-label">Origin</label>
                     <h3 class="text-dark">{{ $flight->origin }}</h3>

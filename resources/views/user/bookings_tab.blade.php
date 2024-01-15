@@ -32,19 +32,18 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav nav-tabs mr-auto" id="myNavBar">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('bookings') }}">Bookings</a>
-                        </li>
                         <li class="nav-item active">
-                            <a class="nav-link active" href="{{ route('flights') }}">Flights</a>
+                            <a class="nav-link active" href="{{ route('showForUser') }}">Bookings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('searchFlights') }}">Search Flights</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('showAll') }}">Flights</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                         </li>
-                        
                     </ul>
                     <form class="form-inline my-2 my-lg-0 justify-right">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -52,10 +51,11 @@
                     </form>
                 </div>
             </nav>
-            @foreach ($flights as $flight)
-                <div class="container py-5 bg-light">
+            <div class="col bg-light mr-auto"></div>
+                <div class="container py-2 bg-light">
                     <div class="row">
-                        <div class="col-sm col-lg-4">
+                        @foreach ($bookings as $booking)
+                        <div class="col-sm col-lg-4 pt-5">
                             <div class="card text-dark card-has-bg click-col"
                                 style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
                                 <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
@@ -69,8 +69,8 @@
                                                 src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
                                                 alt="Generic placeholder image" style="max-width:50px">
                                             <div class="media-body">
-                                                <h6 class="my-0 text-light d-block">{{ $flight->origin}}</h6>
-                                                <a href="{{route('edit', $flight)}}">{{ $flight->destination }}</a>
+                                                <h6 class="my-0 text-light d-block">{{ $booking->booking_status}}</h6>
+                                                <a href="#">{{ $booking->booking_time }}</a>
                                                 <small class="text-light">Traveller</small>
                                             </div>
                                         </div>
@@ -78,9 +78,9 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
-            @endforeach
         </div>
     </div>
 </body>
