@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Flight;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FlightController extends Controller
 {
@@ -32,11 +34,21 @@ class FlightController extends Controller
 
     public function searchFlights()
     {
-        return view('user.search_flights_tab');
+        $flights = [];
+        return view('user.search_flights_tab', ['flights' => $flights]);
     }
 
-    public function search (Flight $flight){
-        return null;
+    public function search(Request $request)
+    {
+        $request->validate([
+            'origin' => 'required',
+            'destination' => 'required',
+            'date' => 'required|after_or_equal:'
+        ]);
+
+        $flights = DB::select("call search_flight(?, ?, ?)", [$request['origin'], $request['destination'], $request['date']]);
+      
+        return view('user.search_flights_tab', ['flights' => $flights]);
     }
 
 }

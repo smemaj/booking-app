@@ -38,8 +38,11 @@ Route::middleware(['auth'])->group(function() {
 
     //admin
     Route::get('/home/flights', [FlightController::class, 'showAllFlights'])->name('showAllFlights');
+
+    //user
     Route::get('/home/flights/edit/{flight}', [FlightController::class, 'edit'])->name('edit');
     Route::get('/home/flights/search', [FlightController::class, 'searchFlights'])->name('searchFlights');
+    Route::post('/home/flights/search', [FlightController::class, 'search'])->name('search');
     Route::get('/home/flights/user', [FlightController::class, 'showAll'])->name('showAll');
 
     Route::get('/home/users', [UserController::class, 'showAllUsers'])->name('showAllUsers');
