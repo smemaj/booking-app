@@ -38,9 +38,9 @@ class BookingController extends Controller
         $status = 'BOOKED';
         // $time_clicked = date('Y-m-d H:i:s');
         $time_clicked='2024-01-14 21:12:30';
-        // dd($status);
+        
         DB::select("call book_flight(?, ?, ?, ?)", [$user->id, $flight->id, $status, $time_clicked]);
-        // dd($time_clicked);
+       
         return redirect()->route('bookings');
     }
 
