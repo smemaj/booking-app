@@ -51,4 +51,15 @@ class FlightController extends Controller
         return view('user.search_flights_tab', ['flights' => $flights]);
     }
 
+    public function editFlight(){
+        if(Auth::user()->checkAdmin()==1){
+
+            return view('admin.edit_flight');
+        }
+    }
+
+    public function updateFlight(){
+        return true;
+    }
+
 }

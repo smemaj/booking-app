@@ -29,7 +29,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
         ]);
-    
+
         $user = new User([
             'first_name' => $request->fname,
             'last_name' => $request->lname,
@@ -38,14 +38,14 @@ class AuthController extends Controller
         ]);
         $user->save();
 
-  
+
         $userLogin = new UserLogin([
             'id' => $user->id,
-            'username' => $request->fname.'_'.$request->lname,
+            'username' => $request->fname . '_' . $request->lname,
             'password' => Hash::make($request->password),
         ]);
         $userLogin->save();
- 
+
         $user->userLogin()->save($userLogin);
 
         // Auth::login($user);
@@ -61,25 +61,32 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $request['email'])->first();
-        if($user==null)
-        return redirect()->route('loginView')->withErrors('user does not exist');
+        if ($user == null)
+            return redirect()->route('loginView')->withErrors('user does not exist');
         $userlogin = $user->userLogin()->first();
-       
-        if(Hash::check($request['password'], $userlogin->password)){
+
+        if (Hash::check($request['password'], $userlogin->password)) {
             Auth::login($user);
             return redirect()->route('home');
-        }else
-        return redirect()->route('loginView')->withErrors('email or password are incorrect');
+        } else
+            return redirect()->route('loginView')->withErrors('email or password are incorrect');
 
     }
 
+    // protected function hasTooManyLoginAttempts(Request $request)
+    // {
+    //     return $this->limiter()->tooManyAttempts(
+    //         $this->throttleKey($request), 3, 1
+    //     );
+    // }
+
     public function logout(Request $request)
-    { 
+    {
         Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
- 
+
         return redirect()->route('loginView');
-     }
+    }
 }

@@ -38,13 +38,21 @@ Route::middleware(['auth'])->group(function() {
 
     //admin
     Route::get('/home/flights', [FlightController::class, 'showAllFlights'])->name('showAllFlights');
+    Route::get('/home/users', [UserController::class, 'showAllUsers'])->name('showAllUsers');
+    Route::get('/home/users/edit/{user}', [UserController::class, 'editUser'])->name('editUser');
+    Route::post('/home/users/edit/{id}', [UserController::class, 'updateUser'])->name('updateUser');
+    // Route::get('/home/flights/new', [FlightController::class, 'newFlight'])->name('newFlight');
+    // Route::post('/home/flights/new', [FlightController::class, 'addFlight'])->name('addFlight');
+    
+    // Route::get('/home/users/new', [UserController::class, 'newUser'])->name('newUser');
+    // Route::post('/home/users/new', [UserController::class, 'newUser'])->name('newUser');
 
     //user
-    Route::get('/home/flights/edit/{flight}', [FlightController::class, 'edit'])->name('edit');
+    Route::get('/home/flights/book/{flight}', [FlightController::class, 'edit'])->name('edit');
     Route::get('/home/flights/search', [FlightController::class, 'searchFlights'])->name('searchFlights');
     Route::post('/home/flights/search', [FlightController::class, 'search'])->name('search');
     Route::get('/home/flights/user', [FlightController::class, 'showAll'])->name('showAll');
 
-    Route::get('/home/users', [UserController::class, 'showAllUsers'])->name('showAllUsers');
+    
     Route::get('/home/admin', [UserController::class, 'checkAdmin'])->name('checkAdmin');
 });

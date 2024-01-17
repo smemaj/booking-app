@@ -53,31 +53,23 @@
             </nav>
                 <div class="container py-2 bg-light">
                     <div class="row">
-                        @foreach ($users as $user)
-                        <div class="col-sm col-lg-4 pt-5">
-                            <div class="card text-dark card-has-bg click-col"
-                                style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
-                                <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                                    alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div class="card-body">
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="media">
-                                            <img class="mr-3 rounded-circle"
-                                                src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                                                alt="Generic placeholder image" style="max-width:50px">
-                                            <div class="media-body">
-                                                <h6 class="my-0 text-light d-block">{{ $user->first_name.' '.$user->last_name }}</h6>
-                                                <a href="{{route('editUser', $user->id)}}">{{$user->first_name.' '.$user->last_name}}</a>
-                                                <small class="text-light">Traveller</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <form method="POST" action="{{ route('updateUser', $user->id) }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="fname" class="form-label">First Name</label>
+                                <h3 class="text-dark">{{ $user->first_name }}</h3>
+                                <input class="form-control" type="text" name="fname" id="fname" placeholder="{{ $user->first_name }}" value="{{ $user->first_name }}" readonly>
                             </div>
-                        </div>   
-            @endforeach
+                            <div class="mb-3">
+                                <label for="lname" class="form-label">Last Name</label>
+                                <h3 class="text-dark">{{ $user->last_name }}</h3>
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username" id="username">
+                            </div> 
+                            <button class="btn btn-primary" name="update" value="save">Save</button>
+                        </form>
                     </div>
                 </div>
         </div>
@@ -85,6 +77,3 @@
 </body>
 
 </html>
-
-
-
