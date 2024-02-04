@@ -86,7 +86,9 @@
                     <label for="flight_status" class="form-label">Status</label>
                     <h3 class="text-dark">{{ $flight->flightDetails()->first()->flight_status }}</h3>
                 </div> 
+                @if(Auth::user()->checkAdmin() == 2)
                 <button class="btn btn-primary" name="action" value="book">Book</button>
+                @endif
             </form>
         </div>
     </div>

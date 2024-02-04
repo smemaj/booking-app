@@ -41,7 +41,7 @@ class BookingController extends Controller
         
         DB::select("call book_flight(?, ?, ?, ?)", [$user->id, $flight->id, $status, $time_clicked]);
        
-        return redirect()->route('bookings');
+        return redirect()->route('showForUser');
     }
 
 }
