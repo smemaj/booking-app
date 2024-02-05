@@ -67,7 +67,7 @@
                                                 alt="Generic placeholder image" style="max-width:50px">
                                             <div class="media-body">
                                                 <h6 class="my-0 text-light d-block">{{ $booking->booking_status}}</h6>
-                                                <a href="#">{{ $booking->booking_time }}</a>
+                                                <a href="{{ route('showBooking', [$booking->user_id, $booking->flight_id]) }}">{{ $booking->booking_time }}</a>
                                                 <small class="text-light">Traveller</small>
                                             </div>
                                         </div>
