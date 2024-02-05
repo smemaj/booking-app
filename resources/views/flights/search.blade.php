@@ -50,25 +50,35 @@
                 </div>
             </nav>
 
-            <div class="container py-5 bg-light">
-                <div class="row">
-                    <div class="col-sm mb-3">
-                        <label for="origin" class="form-label">Origin</label>
-                        <input type="text" class="form-control" name="origin" id="origin">
-                    </div>
-                    <div class="col-sm mb-3">
-                        <label for="destination" class="form-label">Destination</label>
-                        <input type="text" class="form-control" name="destination" id="destination">
-                    </div>
-                    <div class="col-sm mb-3">
-                        <div class="row">
-                            <div class="col-auto">
-                                <label for="date" class="form-label">Flight Date</label>
-                                <input type="date" class="form-control" name="date" id="date">
+            <form method="POST" action="{{ route('search') }}">
+                @csrf
+                <div class="container py-5 bg-light">
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="origin" class="form-label">Origin</label>
+                            <input type="text" class="form-control" name="origin" id="origin">
+                        </div>
+                        <div class="col-sm">
+                            <label for="destination" class="form-label">Destination</label>
+                            <input type="text" class="form-control" name="destination" id="destination">
+                        </div>
+                        <div class="col-sm">
+                            <div class="row align-items-end">
+                                <div class="col-auto">
+                                    <label for="date" class="form-label">Flight Date</label>
+                                    <input type="date" class="form-control" name="date" id="date">
+
+                                </div>
+                                <div class="col-sm">
+                                    <button class="btn btn-primary" name="action"
+                                        value="search">{{ __('Search') }}</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+            </form>
 
                 <div class="container py-2 bg-light">
                     <div class="row">
@@ -102,7 +112,6 @@
                 </div>
 
 
-            </div>
         </div>
     </div>
 </body>

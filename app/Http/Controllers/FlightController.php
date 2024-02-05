@@ -36,7 +36,7 @@ class FlightController extends Controller
     public function searchFlights()
     {
         $flights = [];
-        return view('user.search_flights_tab', ['flights' => $flights]);
+        return view('flights.search', ['flights' => $flights]);
     }
 
     public function search(Request $request)
@@ -46,10 +46,9 @@ class FlightController extends Controller
             'destination' => 'required',
             'date' => 'required|after_or_equal:'
         ]);
-
-        $flights = DB::select("call search_flight(?, ?, ?)", [$request['origin'], $request['destination'], $request['date']]);
+        $flights = Flight::all()->where('origin', $request['origin'])->where('destination', $request['destination'])->where('flight_date', $request['date']);
       
-        return view('user.search_flights_tab', ['flights' => $flights]);
+        return view('flights.search', ['flights' => $flights]);
     }
 
     public function editFlight(){
@@ -74,10 +73,10 @@ class FlightController extends Controller
     ];
 
     $handle = fopen('php://output', 'w');
-    fputcsv($handle, ['User', 'Flight', 'Status', 'Time']); // Add more headers as needed
+    fputcsv($handle, ['User', 'Flight', 'Status', 'Time']);
 
     foreach ($bookings as $booking) {
-        fputcsv($handle, [$booking->user_id, $booking->flight_id, $booking->booking_status, $booking->booking_time]); // Add more fields as needed
+        fputcsv($handle, [$booking->user_id, $booking->flight_id, $booking->booking_status, $booking->booking_time]);
     }
 
     fclose($handle);
