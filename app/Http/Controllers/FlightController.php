@@ -7,6 +7,7 @@ use App\Models\Flight;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class FlightController extends Controller
 {
@@ -61,5 +62,27 @@ class FlightController extends Controller
     public function updateFlight(){
         return true;
     }
+
+
+    public function export(Flight $flight)
+{
+    $bookings = DB::select("call get_bookings_for_flight(?)", [$flight->id]);
+    $csvFileName = 'bookings.csv';
+    $headers = [
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => 'attachment; filename="' . $csvFileName . '"',
+    ];
+
+    $handle = fopen('php://output', 'w');
+    fputcsv($handle, ['User', 'Flight', 'Status', 'Time']); // Add more headers as needed
+
+    foreach ($bookings as $booking) {
+        fputcsv($handle, [$booking->user_id, $booking->flight_id, $booking->booking_status, $booking->booking_time]); // Add more fields as needed
+    }
+
+    fclose($handle);
+
+    return Response::make('', 200, $headers);
+}
 
 }

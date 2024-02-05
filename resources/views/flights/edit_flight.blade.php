@@ -32,6 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav nav-tabs mr-auto" id="myNavBar">
+                        @if(Auth::user()->checkAdmin() == 2)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('showForUser') }}">Bookings</a>
                         </li>
@@ -44,6 +45,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('showAllUsers') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('showAllBookings') }}">Bookings</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ route('showAllFlights') }}">Flights</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        </li>
+                        @endif
                     </ul>
                     <form class="form-inline my-2 my-lg-0 justify-right">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -88,7 +103,11 @@
                 </div> 
                 @if(Auth::user()->checkAdmin() == 2)
                 <button class="btn btn-primary" name="action" value="book">Book</button>
+                <a href="{{ route('showAll') }}" class="btn btn-secondary">Back</a>
+                @else
+                <a href="{{ route('showAllFlights') }}" class="btn btn-secondary">Back</a>
                 @endif
+                <a href="{{ route('export', $flight) }}" class="btn btn-info">Export</a>
             </form>
         </div>
     </div>

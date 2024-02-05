@@ -53,7 +53,6 @@
             </nav>
             
                 <div class="container py-2 bg-light">
-                    <a href="#link" class="btn btn-info" role="button">Add Flight</a>
                     <div class="row">
                         @foreach ($flights as $flight)
                         <div class="col-sm col-lg-4 pt-5">

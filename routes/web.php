@@ -52,6 +52,12 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/home/flights/search', [FlightController::class, 'searchFlights'])->name('searchFlights');
     Route::post('/home/flights/search', [FlightController::class, 'search'])->name('search');
     Route::get('/home/flights/user', [FlightController::class, 'showAll'])->name('showAll');
+    
+
+    //admin
+    Route::post('/home/users/user', [UserController::class, 'searchUser'])->name('searchUser');
+    Route::post('/home/flights/{flight}', [FlightController::class, 'export'])->name('export');
+    Route::get('/home/flights/{flight}', [FlightController::class, 'export'])->name('export');
 
     
     Route::get('/home/admin', [UserController::class, 'checkAdmin'])->name('checkAdmin');

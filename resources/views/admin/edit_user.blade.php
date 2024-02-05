@@ -65,7 +65,11 @@
                                 <h3 class="text-dark">{{ $user->last_name }}</h3>
                             </div>
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="oldun" class="form-label">Old Username</label>
+                                <h3 class="text-dark">{{ $user->userLogin()->first()->username }}</h3>
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">New Username</label>
                                 <input type="text" class="form-control" name="username" id="username">
                             </div> 
                             <button class="btn btn-primary" name="update" value="save">Save</button>
