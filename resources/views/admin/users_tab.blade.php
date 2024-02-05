@@ -57,12 +57,7 @@
                         </div>
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search" value="search">Search</button>
                     </form>
-                    {{-- <form method="POST" action="{{ route('searchUser') }}">
-                        @csrf
-                        @method('POST')
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form> --}}
+                   
                     <div class="row">
                         @if ($searchUser != null)
                         <div class="col-sm col-lg-4 pt-5">

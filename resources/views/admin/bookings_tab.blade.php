@@ -45,10 +45,7 @@
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0 justify-right">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                   
                 </div>
             </nav>
             <div class="col bg-light mr-auto"></div>
@@ -70,7 +67,7 @@
                                                 alt="Generic placeholder image" style="max-width:50px">
                                             <div class="media-body">
                                                 <h6 class="my-0 text-light d-block">{{ $booking->booking_status}}</h6>
-                                                <a href="#">{{ $booking->booking_time }}</a>
+                                                <a href="{{ route('showBooking', [$booking->user_id, $booking->flight_id]) }}">{{ $booking->booking_time }}</a>
                                                 <small class="text-light">Traveller</small>
                                             </div>
                                         </div>

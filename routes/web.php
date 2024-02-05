@@ -41,11 +41,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/home/users', [UserController::class, 'showAllUsers'])->name('showAllUsers');
     Route::get('/home/users/edit/{user}', [UserController::class, 'editUser'])->name('editUser');
     Route::post('/home/users/edit/{id}', [UserController::class, 'updateUser'])->name('updateUser');
-    // Route::get('/home/flights/new', [FlightController::class, 'newFlight'])->name('newFlight');
-    // Route::post('/home/flights/new', [FlightController::class, 'addFlight'])->name('addFlight');
+    Route::get('/home/bookings/{uid}/{fid}', [BookingController::class, 'showBooking'])->name('showBooking');
     
-    // Route::get('/home/users/new', [UserController::class, 'newUser'])->name('newUser');
-    // Route::post('/home/users/new', [UserController::class, 'newUser'])->name('newUser');
 
     //user
     Route::get('/home/flights/book/{flight}', [FlightController::class, 'edit'])->name('edit');
