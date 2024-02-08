@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/home/users/user', [UserController::class, 'searchUser'])->name('searchUser');
     Route::post('/home/flights/{flight}', [FlightController::class, 'export'])->name('export');
     Route::get('/home/flights/{flight}', [FlightController::class, 'export'])->name('export');
-
+    Route::get('/home/flights/{flight}/cancel', [FlightController::class, 'cancel'])->name('cancel');
     
     Route::get('/home/admin', [UserController::class, 'checkAdmin'])->name('checkAdmin');
 });

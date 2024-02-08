@@ -84,4 +84,11 @@ class FlightController extends Controller
     return Response::make('', 200, $headers);
 }
 
+    public function cancel(Flight $flight)
+    {
+        DB::select("call cancel_flight(?)", [$flight->id]);
+        $flights = Flight::all();
+        return view('flights.edit_flight', [ 'flights' => $flights, 'flight' => $flight ]);
+    }
+
 }
