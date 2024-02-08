@@ -34,14 +34,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav nav-tabs mr-auto" id="myNavBar">
                         @if (Auth::user()->checkAdmin() == 2)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('showForUser') }}">Bookings</a>
+                            <li class="nav-item active">
+                                <a class="nav-link active" href="{{ route('showForUser') }}">Bookings</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('searchFlights') }}">Search Flights</a>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link active" href="{{ route('showAll') }}">Flights</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('showAll') }}">Flights</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}">Logout</a>
@@ -50,11 +50,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('showAllUsers') }}">Users</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('showAllBookings') }}">Bookings</a>
-                            </li>
                             <li class="nav-item active">
-                                <a class="nav-link active" href="{{ route('showAllFlights') }}">Flights</a>
+                                <a class="nav-link active" href="{{ route('showAllBookings') }}">Bookings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('showAllFlights') }}">Flights</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}">Logout</a>

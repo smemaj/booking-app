@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('app.css') }}" rel="stylesheet">
-   
+
 </head>
 
 <body>
@@ -32,35 +33,35 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav nav-tabs mr-auto" id="myNavBar">
-                        @if(Auth::user()->checkAdmin() == 2)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('showForUser') }}">Bookings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('searchFlights') }}">Search Flights</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="{{ route('showAll') }}">Flights</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
-                        </li>
+                        @if (Auth::user()->checkAdmin() == 2)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('showForUser') }}">Bookings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('searchFlights') }}">Search Flights</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link active" href="{{ route('showAll') }}">Flights</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                            </li>
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('showAllUsers') }}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('showAllBookings') }}">Bookings</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="{{ route('showAllFlights') }}">Flights</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('showAllUsers') }}">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('showAllBookings') }}">Bookings</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link active" href="{{ route('showAllFlights') }}">Flights</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                            </li>
                         @endif
                     </ul>
-                    
+
                 </div>
             </nav>
             <form method="POST" action="{{ route('bookFlight', $flight) }}">
@@ -76,11 +77,11 @@
                 <div class="mb-3">
                     <label for="flight_date" class="form-label">Flight Date</label>
                     <h3 class="text-dark">{{ $flight->flight_date }}</h3>
-                </div> 
+                </div>
                 <div class="mb-3">
                     <label for="departure_time" class="form-label">Departure Time</label>
                     <h3 class="text-dark">{{ $flight->departure_time }}</h3>
-                </div> 
+                </div>
 
                 <div class="mb-3">
                     <label for="airline_code" class="form-label">Airline Code</label>
@@ -93,24 +94,27 @@
                 <div class="mb-3">
                     <label for="aircraft_type" class="form-label">Aircraft</label>
                     <h3 class="text-dark">{{ $flight->flightDetails()->first()->aircraft_type }}</h3>
-                </div> 
+                </div>
                 <div class="mb-3">
                     <label for="flight_status" class="form-label">Status</label>
                     <h3 class="text-dark">{{ $flight->flightDetails()->first()->flight_status }}</h3>
-                </div> 
-                @if(Auth::user()->checkAdmin() == 2)
-                <button class="btn btn-primary" name="action" value="book">Book</button>
-                <a href="{{ route('showAll') }}" class="btn btn-secondary">Back</a>
+                </div>
+                @if (Auth::user()->checkAdmin() == 2)
+                    @if ($flight->flightDetails()->first()->flight_status != 'canceled')
+                        <button class="btn btn-primary" name="action" value="book">Book</button>
+                    @endif
+                    <a href="{{ route('showAll') }}" class="btn btn-secondary">Back</a>
                 @else
-                <a href="{{ route('showAllFlights') }}" class="btn btn-secondary">Back</a>
+                    <a href="{{ route('export', $flight) }}" class="btn btn-info">Export</a>
+                    <a href="{{ route('showAllFlights') }}" class="btn btn-secondary">Back</a>
+                    @if ($flight->flightDetails()->first()->flight_status != 'canceled')
+                        <a href="{{ route('cancel', $flight) }}" class="btn btn-danger">Cancel</a>
+                    @endif
                 @endif
-                <a href="{{ route('export', $flight) }}" class="btn btn-info">Export</a>
+                <!--jo per userin-->
             </form>
         </div>
     </div>
 </body>
 
 </html>
-
-
-
