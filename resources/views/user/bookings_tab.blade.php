@@ -54,20 +54,19 @@
                         @foreach ($bookings as $booking)
                         <div class="col-sm col-lg-4 pt-5">
                             <div class="card text-dark card-has-bg click-col"
-                                style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
-                                <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
+                            style="background-image:url('/images/{{App\Models\Flight::find($booking->flight_id)->destination}}.jpg');">
+                                <img class="card-img d-none" width="600px" height="900px" src="{{ asset('images/'.App\Models\Flight::find($booking->flight_id)->destination.'.jpg') }}"
                                     alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
                                 <div class="card-img-overlay d-flex flex-column">
                                     <div class="card-body">
                                     </div>
                                     <div class="card-footer">
                                         <div class="media">
-                                            <img class="mr-3 rounded-circle"
-                                                src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                                                alt="Generic placeholder image" style="max-width:50px">
                                             <div class="media-body">
-                                                <h6 class="my-0 text-light d-block">{{ $booking->booking_status}}</h6>
-                                                <a href="{{ route('showBooking', [$booking->user_id, $booking->flight_id]) }}">{{ $booking->booking_time }}</a>
+                                                <h5 class="my-0 text-light d-block">{{ App\Models\Flight::find($booking->flight_id)->origin.' to '.App\Models\Flight::find($booking->flight_id)->destination }}</h5>
+                                                <h6 class="text-light">{{ App\Models\User::find($booking->user_id)->first_name.' '.App\Models\User::find($booking->user_id)->last_name }}</h6>
+                                                
+                                                <a href="{{ route('showBooking', [$booking->user_id, $booking->flight_id]) }}">Information</a>
                                                 <small class="text-light">Traveller</small>
                                             </div>
                                         </div>

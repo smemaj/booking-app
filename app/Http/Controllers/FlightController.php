@@ -14,9 +14,11 @@ class FlightController extends Controller
     public function showAllFlights()
     {
         if(Auth::user()->checkAdmin()==1){
-        $flights = Flight::all();
+            $flights = Flight::all();
+
         return view('admin.flights_tab', [ 'flights' => $flights ]);
-    }
+
+        }
     }
 
     public function showAll()

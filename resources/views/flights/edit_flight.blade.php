@@ -59,46 +59,50 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                             </li>
-                        @endif
+                            @endif
                     </ul>
 
                 </div>
             </nav>
             <form method="POST" action="{{ route('bookFlight', $flight) }}">
                 @csrf
+                <div class="container py-4 px-4">
                 <div class="mb-3">
                     <label for="origin" class="form-label">Origin</label>
-                    <h3 class="text-dark">{{ $flight->origin }}</h3>
+                    <h6 class="text-dark">{{ $flight->origin }}</h6>
                 </div>
                 <div class="mb-3">
                     <label for="destination" class="form-label">Destination</label>
-                    <h3 class="text-dark">{{ $flight->destination }}</h3>
+                    <h6 class="text-dark">{{ $flight->destination }}</h6>
                 </div>
                 <div class="mb-3">
                     <label for="flight_date" class="form-label">Flight Date</label>
-                    <h3 class="text-dark">{{ $flight->flight_date }}</h3>
+                    <h6 class="text-dark">{{ $flight->flight_date }}</h6>
                 </div>
                 <div class="mb-3">
                     <label for="departure_time" class="form-label">Departure Time</label>
-                    <h3 class="text-dark">{{ $flight->departure_time }}</h3>
+                    <h6 class="text-dark">{{ $flight->departure_time }}</h6>
                 </div>
 
                 <div class="mb-3">
                     <label for="airline_code" class="form-label">Airline Code</label>
-                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->airline_code }}</h3>
+                    <h6 class="text-dark">{{ $flight->flightDetails()->first()->airline_code }}</h6>
                 </div>
                 <div class="mb-3">
                     <label for="flight_number" class="form-label">Flight Number</label>
-                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->flight_number }}</h3>
+                    <h6 class="text-dark">{{ $flight->flightDetails()->first()->flight_number }}</h6>
                 </div>
                 <div class="mb-3">
                     <label for="aircraft_type" class="form-label">Aircraft</label>
-                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->aircraft_type }}</h3>
+                    <h6 class="text-dark">{{ $flight->flightDetails()->first()->aircraft_type }}</h6>
                 </div>
                 <div class="mb-3">
                     <label for="flight_status" class="form-label">Status</label>
-                    <h3 class="text-dark">{{ $flight->flightDetails()->first()->flight_status }}</h3>
+                    <h6 class="text-dark">{{ $flight->flightDetails()->first()->flight_status }}</h6>
                 </div>
+
+                <!-- Add icon library -->
+
                 @if (Auth::user()->checkAdmin() == 2)
                     @if ($flight->flightDetails()->first()->flight_status != 'canceled')
                         <button class="btn btn-primary" name="action" value="book">Book</button>
@@ -112,6 +116,7 @@
                     @endif
                 @endif
                 <!--jo per userin-->
+                </div>
             </form>
         </div>
     </div>

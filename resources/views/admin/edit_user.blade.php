@@ -52,10 +52,11 @@
                     <div class="row">
                         <form method="POST" action="{{ route('updateUser', $user->id) }}">
                             @csrf
+                            <div class="container py-4 px-4">
                             <div class="mb-3">
                                 <label for="fname" class="form-label">First Name</label>
                                 <h3 class="text-dark">{{ $user->first_name }}</h3>
-                                <input class="form-control" type="text" name="fname" id="fname" placeholder="{{ $user->first_name }}" value="{{ $user->first_name }}" readonly>
+                                {{-- <input class="form-control" type="text" name="fname" id="fname" placeholder="{{ $user->first_name }}" value="{{ $user->first_name }}" readonly> --}}
                             </div>
                             <div class="mb-3">
                                 <label for="lname" class="form-label">Last Name</label>
@@ -67,12 +68,27 @@
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">New Username</label>
-                                <input type="text" class="form-control" name="username" id="username">
+                                <input type="text" class="form-control" name="username" id="username" value="{{old('username', $user->userLogin()->first()->username)}}">
                             </div> 
                             <button class="btn btn-primary" name="update" value="save">Save</button>
+                            </div>
                         </form>
                     </div>
                 </div>
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{{-- <div class="card1">
+  <img src="{{ asset('images/'.$user->id.'.jpg')}}" alt="John" style="width:100%">
+  <h1>{{ $user->first_name.' '.$user->last_name  }}</h1>
+  <p class="title1">CEO & Founder, Example</p>
+  <p>Harvard University</p>
+  <a href="#"><i class="fa fa-dribbble"></i></a>
+  <a href="#"><i class="fa fa-twitter"></i></a>
+  <a href="#"><i class="fa fa-linkedin"></i></a>
+  <a href="#"><i class="fa fa-facebook"></i></a>
+  <p><button>Contact</button></p>
+</div> --}}
         </div>
     </div>
 </body>

@@ -48,8 +48,6 @@ class AuthController extends Controller
 
         $user->userLogin()->save($userLogin);
 
-        // Auth::login($user);
-
         return redirect()->route('loginView')->withSuccess('Registration completed successfully. You can now login.');
     }
 

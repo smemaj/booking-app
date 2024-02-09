@@ -14,7 +14,16 @@ class BookingController extends Controller
 
     public function main()
     {
-        return view('home');
+        $bookings = Booking::all();
+        if(Auth::user()->checkAdmin()==1){
+           
+            return view('admin.bookings_tab', [ 'bookings' => $bookings ]);
+        }
+        elseif(Auth::user()->checkAdmin()==2){
+            return redirect()->route('showForUser', [ 'bookings' => $bookings ]);
+            // return view('home');
+        }
+       
     }
 
 

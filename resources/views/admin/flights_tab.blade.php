@@ -54,21 +54,22 @@
                         @foreach ($flights as $flight)
                         <div class="col-sm col-lg-4 pt-5">
                             <div class="card text-dark card-has-bg click-col"
-                                style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
-                                <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
+                                style="background-image:url('/images/{{$flight->destination}}.jpg');">
+                                <img class="card-img d-none" src="{{asset('images/'.$flight->destination.'.jpg')}}"
                                     alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
                                 <div class="card-img-overlay d-flex flex-column">
                                     <div class="card-body">
                                     </div>
                                     <div class="card-footer">
                                         <div class="media">
-                                            <img class="mr-3 rounded-circle"
+                                            {{-- <img class="mr-3 rounded-circle"
                                                 src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                                                alt="Generic placeholder image" style="max-width:50px">
+                                                alt="Generic placeholder image" style="max-width:50px"> --}}
                                             <div class="media-body">
-                                                <h6 class="my-0 text-light d-block">{{ $flight->origin}}</h6>
-                                                <a href="{{route('edit', $flight)}}">{{ $flight->destination }}</a>
-                                                <small class="text-light">Traveller</small>
+                                                <h5 class="my-0 text-light d-block">{{ $flight->origin.' to '.$flight->destination}}</h5>
+                                                <h6 class="my-0 text-light d-block">{{ $flight->flight_date}}</h6>
+                                                <a href="{{route('edit', $flight)}}">Information</a>
+                                                {{-- <small class="text-light">Traveller</small> --}}
                                             </div>
                                         </div>
                                     </div>

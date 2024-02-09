@@ -64,28 +64,31 @@
 
                 </div>
             </nav>
-            <div class="mb-3">
-                <label for="user" class="form-label">User</label>
-                <h3 class="text-dark">{{ $user->first_name . ' ' . $user->last_name }}</h3>
-            </div>
-            <div class="mb-3">
-                <label for="flight" class="form-label">Flight</label>
-                <h3 class="text-dark">{{ $flight->origin . ' to ' . $flight->destination }}</h3>
-            </div>
-            <div class="mb-3">
-                <label for="booking_status" class="form-label">Booking Status</label>
-                <h3 class="text-dark">{{ $booking->booking_status }}</h3>
-            </div>
-            <div class="mb-3">
-                <label for="booking_time" class="form-label">Booking Time</label>
-                <h3 class="text-dark">{{ $booking->booking_time }}</h3>
+            <div class="container py-4 px-4">
+                <div class="mb-3">
+                    <label for="user" class="form-label">User</label>
+                    <h3 class="text-dark">{{ $user->first_name . ' ' . $user->last_name }}</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="flight" class="form-label">Flight</label>
+                    <h3 class="text-dark">{{ $flight->origin . ' to ' . $flight->destination }}</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="booking_status" class="form-label">Booking Status</label>
+                    <h3 class="text-dark">{{ $booking->booking_status }}</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="booking_time" class="form-label">Booking Time</label>
+                    <h3 class="text-dark">{{ $booking->booking_time }}</h3>
+                </div>
+                @if (Auth::user()->checkAdmin() == 2)
+                    <a href="{{ route('showForUser') }}" class="btn btn-secondary">Back</a>
+                @else
+                    <a href="{{ route('showAllBookings') }}" class="btn btn-secondary">Back</a>
+                @endif
             </div>
 
-            @if (Auth::user()->checkAdmin() == 2)
-                <a href="{{ route('showForUser') }}" class="btn btn-secondary">Back</a>
-            @else
-                <a href="{{ route('showAllBookings') }}" class="btn btn-secondary">Back</a>
-            @endif
+
         </div>
     </div>
 </body>
